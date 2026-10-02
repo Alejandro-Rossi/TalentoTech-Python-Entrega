@@ -63,7 +63,7 @@ while True:
                     break
             
             if not encontrado:
-                print("❌ No se encontró ningún artículo con esa marca o modelo.")
+                print("❌ No se encontró ningún producto con esa marca o modelo.")
 
     # OPCIÓN 4: Eliminar producto
 
