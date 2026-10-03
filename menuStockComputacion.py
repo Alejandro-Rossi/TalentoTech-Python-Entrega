@@ -25,8 +25,12 @@ while True:
         modelo = input("Ingrese el modelo (ej. Modelo comercial (FURY DDR5 32GB), SKU o PN): ")
         tipo = input("Ingrese el tipo de producto (ej. Memoria RAM, Teclado, Monitor, etc): ")
         
-        # Se convierte directamente a entero (precio sin centavos)
-        precio = int(input("Ingrese el precio en pesos (sin centavos): "))
+        # Se convierte directamente a entero (precio sin centavos) 
+        # Se corrige el error que para el programa si ponemos un string cuando esperamos un número
+        precio_str = input("Ingrese el precio en pesos (sin centavos): ")
+        while not precio_str.isdigit():
+            precio_str = input("❌ Error. Ingrese únicamente números: ")
+        precio = int(precio_str)
         
         # Creamos la sublista con los 4 datos y la guardamos en la lista principal
         producto_nuevo = [marca, modelo, tipo, precio]
