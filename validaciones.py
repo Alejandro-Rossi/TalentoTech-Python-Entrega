@@ -8,7 +8,7 @@ def pedir_texto_obligatorio(mensaje):
             return texto
         print("❌ Error. Este campo no puede quedar vacío.")
 
-'''def pedir_entero(mensaje):
+def pedir_entero(mensaje):
     """Solicita un número entero positivo validando con try-except."""
     while True:
         try:
@@ -18,7 +18,7 @@ def pedir_texto_obligatorio(mensaje):
                 continue
             return valor
         except ValueError:
-            print("❌ Error. Ingrese únicamente números enteros válidos.")'''
+            print("❌ Error. Ingrese únicamente números enteros válidos.")
 
 def pedir_flotante(mensaje):
     """Solicita un número decimal positivo sin redondear."""
