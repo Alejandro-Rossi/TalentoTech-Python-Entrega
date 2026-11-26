@@ -84,4 +84,4 @@ Al ejecutarse por primera vez, `database.inicializar_db()` crea automáticamente
 
 ## Autor
 
-* Proyecto desarrollado como **Trabajo Práctico — Talento Tech**.
+* Proyecto desarrollado por Roberto Aljeandro Rossi como **Trabajo Práctico — Talento Tech**.
