@@ -1,10 +1,10 @@
 import database as db
 from validaciones import (
+    formatear_precio,
     pedir_entero,
     pedir_flotante,
-    pedir_entero_opcional,
-    pedir_texto_obligatorio,
     pedir_flotante_opcional,
+    pedir_texto_obligatorio,
 )
 
 
@@ -13,10 +13,10 @@ def vista_crear():
     marca = pedir_texto_obligatorio("Marca (ej. Kingston, Asus): ")
     modelo = pedir_texto_obligatorio("Modelo (ej. FURY DDR5 32GB): ")
     tipo = pedir_texto_obligatorio("Tipo (ej. Memoria RAM, Monitor): ")
-    precio = pedir_flotante("Precio en pesos (con o sin decimales): ")
+    precio = pedir_flotante("Precio en pesos (ej. 545.600,65): ")
 
     if db.insertar_producto(marca, modelo, tipo, precio):
-        print(f"✅ ¡El producto '{marca} {modelo}' se guardó con éxito!")
+        print(f"✅ ¡El producto '{marca} {modelo}' (${formatear_precio(precio)}) se guardó con éxito!")
 
 
 def vista_mostrar():
@@ -27,7 +27,7 @@ def vista_mostrar():
         return False
 
     for p in productos:
-        print(f"ID: {p[0]} | {p[1]} {p[2]} | Tipo: {p[3]} | Precio: ${p[4]}")
+        print(f"ID: {p[0]} | {p[1]} {p[2]} | Tipo: {p[3]} | Precio: ${formatear_precio(p[4])}")
     return True
 
 
@@ -55,13 +55,14 @@ def vista_actualizar():
         print("❌ No existe ningún producto con ese ID.")
         return
 
+    precio_actual_fmt = formatear_precio(producto[4])
     print(f"\nEditando ID {producto[0]}: {producto[1]} {producto[2]} (${producto[4]})")
     print("(Presione ENTER sin escribir nada para mantener el valor actual)")
 
     marca = input(f"Nueva marca [{producto[1]}]: ").strip() or producto[1]
     modelo = input(f"Nuevo modelo [{producto[2]}]: ").strip() or producto[2]
     tipo = input(f"Nuevo tipo [{producto[3]}]: ").strip() or producto[3]
-    precio = pedir_entero_opcional(f"Nuevo precio [{producto[4]}]: ", producto[4])
+    precio = pedir_flotante_opcional(f"Nuevo precio [{precio_actual_fmt}]: ", producto[4])
 
     if db.actualizar_producto(id_producto, marca, modelo, tipo, precio):
         print(f"✅ ¡Producto ID {id_producto} actualizado correctamente!")

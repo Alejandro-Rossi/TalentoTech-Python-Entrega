@@ -77,3 +77,7 @@ def pedir_flotante_opcional(mensaje, valor_actual):
             return valor
         except ValueError:
             print("❌ Error. Ingrese un precio válido (ej. 545.600,65 o 545600.65).")
+
+def formatear_precio(precio):
+    """Formatea un float al estilo argentino 'nnn.nnn,nn' (ej. 545.600,65)."""
+    return f"{precio:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
