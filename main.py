@@ -4,6 +4,7 @@ from validaciones import (
     pedir_flotante,
     pedir_entero_opcional,
     pedir_texto_obligatorio,
+    pedir_flotante_opcional,
 )
 
 
@@ -12,7 +13,7 @@ def vista_crear():
     marca = pedir_texto_obligatorio("Marca (ej. Kingston, Asus): ")
     modelo = pedir_texto_obligatorio("Modelo (ej. FURY DDR5 32GB): ")
     tipo = pedir_texto_obligatorio("Tipo (ej. Memoria RAM, Monitor): ")
-    precio = pedir_entero("Precio en pesos (con o sin decimales): ")
+    precio = pedir_flotante("Precio en pesos (con o sin decimales): ")
 
     if db.insertar_producto(marca, modelo, tipo, precio):
         print(f"✅ ¡El producto '{marca} {modelo}' se guardó con éxito!")
